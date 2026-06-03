@@ -230,6 +230,18 @@
 
     .footer { text-align: center; margin-top: 32px; font-size: 11px; color: rgba(255,255,255,.2); }
 
+    /* 受付終了画面 */
+    .closed-screen {
+      display: none; text-align: center; padding: 80px 20px;
+    }
+    .closed-screen.show { display: block; }
+    .closed-icon { font-size: 60px; margin-bottom: 20px; }
+    .closed-title {
+      font-size: 18px; font-weight: 700; color: rgba(255,255,255,.85);
+      line-height: 1.8; margin-bottom: 16px;
+    }
+    .closed-sub { font-size: 14px; color: rgba(255,255,255,.5); }
+
     /* 当選チェックボックス */
     .prize-list { display: flex; flex-direction: column; gap: 10px; }
     .prize-option {
@@ -396,15 +408,30 @@
     <div class="success-title">応募完了！</div>
     <div class="success-msg">
       スクリーンショットの受付が完了しました✨<br>
-      確認後、ご連絡いたします。<br><br>
-      七夕の夜をお楽しみに🎋
+      クーポンは、7月31日(金)迄にメールでお送りします。
     </div>
+  </div>
+
+  <!-- 受付終了画面 -->
+  <div class="closed-screen" id="closedScreen">
+    <div class="closed-icon">🎋</div>
+    <div class="closed-title">
+      当選結果の受付は<br>7月20日で終了しました。
+    </div>
+    <div class="closed-sub">来年2027の七夕をお楽しみに。</div>
   </div>
 
   <div class="footer">© 2026 七夕コンテスト実行委員会</div>
 </div>
 
 <script>
+  // 受付終了チェック（2026年7月21日 0:00 JST以降）
+  const deadline = new Date('2026-07-21T00:00:00+09:00');
+  if (new Date() >= deadline) {
+    document.getElementById('mainForm').style.display = 'none';
+    document.getElementById('closedScreen').classList.add('show');
+  }
+
   // 星生成
   const sc = document.getElementById('stars');
   for (let i = 0; i < 100; i++) {
