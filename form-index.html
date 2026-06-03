@@ -6,289 +6,104 @@
   <title>七夕 抽選結果連絡フォーム</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Hiragino+Kaku+Gothic+Pro&display=swap');
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --deep: #0d1b3e;
-      --gold: #f5c842;
-      --teal: #7fffd4;
-      --pink: #ff89b0;
-      --purple: #b57bff;
-    }
-
-    body {
-      font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro', 'Yu Gothic', '游ゴシック', 'Meiryo', 'メイリオ', sans-serif;
-      background: var(--deep);
-      min-height: 100vh;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
+    :root { --deep: #0d1b3e; --gold: #f5c842; --teal: #7fffd4; --pink: #ff89b0; --purple: #b57bff; }
+    body { font-family: 'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro','Yu Gothic','游ゴシック','Meiryo','メイリオ',sans-serif; background: var(--deep); min-height: 100vh; color: #fff; overflow-x: hidden; }
     .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-    .star {
-      position: absolute; border-radius: 50%; background: #fff;
-      animation: tw var(--d,3s) ease-in-out infinite;
-      animation-delay: var(--dl,0s);
-    }
+    .star { position: absolute; border-radius: 50%; background: #fff; animation: tw var(--d,3s) ease-in-out infinite; animation-delay: var(--dl,0s); }
     @keyframes tw { 0%,100%{opacity:.15} 50%{opacity:.9} }
-
-    .container {
-      position: relative; z-index: 1;
-      max-width: 480px; margin: 0 auto;
-      padding: 0 16px 60px;
-    }
-
+    .container { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 16px 60px; }
     .header { text-align: center; padding: 36px 0 24px; }
-    .header h1 {
-      font-size: 22px; font-weight: 700; letter-spacing: 2px;
-      background: linear-gradient(135deg, var(--gold), var(--teal));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    .header h1 { font-size: 22px; font-weight: 700; letter-spacing: 2px; background: linear-gradient(135deg, var(--gold), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .header .sub { font-size: 12px; color: rgba(255,255,255,.55); margin-top: 6px; letter-spacing: 1px; }
-
-    .card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 20px; padding: 26px 22px;
-      backdrop-filter: blur(10px);
-      margin-bottom: 16px;
-    }
-
-    .section-label {
-      font-size: 11px; font-weight: 700; color: var(--gold);
-      letter-spacing: 2px; margin-bottom: 18px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .section-label::after {
-      content:''; flex:1; height:1px;
-      background: linear-gradient(to right, rgba(245,200,66,.4), transparent);
-    }
-
+    .card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; padding: 26px 22px; backdrop-filter: blur(10px); margin-bottom: 16px; }
+    .section-label { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 2px; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+    .section-label::after { content:''; flex:1; height:1px; background: linear-gradient(to right, rgba(245,200,66,.4), transparent); }
     .form-group { margin-bottom: 20px; }
-    label.field-label {
-      display: block; font-size: 13px; font-weight: 500;
-      color: rgba(255,255,255,.85); margin-bottom: 7px;
-    }
-    .req {
-      display: inline-block; background: linear-gradient(135deg,#ff6b9d,#ff89b0);
-      color: #fff; font-size: 10px; padding: 1px 6px;
-      border-radius: 20px; margin-left: 6px; font-weight: 700;
-    }
-    .opt {
-      display: inline-block; background: rgba(255,255,255,.15);
-      color: rgba(255,255,255,.55); font-size: 10px;
-      padding: 1px 6px; border-radius: 20px; margin-left: 6px;
-    }
-
-    input[type=text], input[type=email], input[type=tel], textarea {
-      width: 100%;
-      background: rgba(255,255,255,.08);
-      border: 1.5px solid rgba(255,255,255,.15);
-      border-radius: 12px; color: #fff;
-      font-family: inherit; font-size: 15px;
-      padding: 13px 16px; outline: none;
-      transition: border-color .2s, box-shadow .2s;
-      -webkit-appearance: none;
-    }
-    input:focus, textarea:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(245,200,66,.15);
-    }
-    input::placeholder, textarea::placeholder {
-      color: rgba(255,255,255,.28); font-size: 14px;
-    }
+    label.field-label { display: block; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.85); margin-bottom: 7px; }
+    .req { display: inline-block; background: linear-gradient(135deg,#ff6b9d,#ff89b0); color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 20px; margin-left: 6px; font-weight: 700; }
+    .opt { display: inline-block; background: rgba(255,255,255,.15); color: rgba(255,255,255,.55); font-size: 10px; padding: 1px 6px; border-radius: 20px; margin-left: 6px; }
+    input[type=text], input[type=email], input[type=tel], textarea { width: 100%; background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.15); border-radius: 12px; color: #fff; font-family: inherit; font-size: 15px; padding: 13px 16px; outline: none; transition: border-color .2s, box-shadow .2s; -webkit-appearance: none; }
+    input:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,200,66,.15); }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,.28); font-size: 14px; }
     textarea { resize: none; line-height: 1.6; }
-
-    .upload-area {
-      border: 2px dashed rgba(255,255,255,.25);
-      border-radius: 16px; padding: 28px 16px;
-      text-align: center; cursor: pointer;
-      transition: border-color .2s, background .2s;
-      position: relative;
-    }
-    .upload-area:hover, .upload-area.drag {
-      border-color: var(--gold);
-      background: rgba(245,200,66,.06);
-    }
-    .upload-area input[type=file] {
-      position: absolute; inset: 0; opacity: 0; cursor: pointer;
-      width: 100%; height: 100%;
-    }
+    .upload-area { border: 2px dashed rgba(255,255,255,.25); border-radius: 16px; padding: 28px 16px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; position: relative; }
+    .upload-area:hover, .upload-area.drag { border-color: var(--gold); background: rgba(245,200,66,.06); }
+    .upload-area input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
     .upload-icon { font-size: 36px; margin-bottom: 8px; }
     .upload-text { font-size: 14px; color: rgba(255,255,255,.7); }
     .upload-hint { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 4px; }
-
     .preview-wrap { margin-top: 14px; display: none; }
-    .preview-wrap img {
-      width: 100%; max-height: 260px; object-fit: contain;
-      border-radius: 12px; border: 1px solid rgba(255,255,255,.15);
-    }
-    .preview-name {
-      font-size: 11px; color: rgba(255,255,255,.45);
-      margin-top: 6px; text-align: center; word-break: break-all;
-    }
-    .remove-btn {
-      display: block; margin: 8px auto 0;
-      background: rgba(255,80,80,.15); border: 1px solid rgba(255,80,80,.3);
-      color: #ff8080; border-radius: 20px; padding: 5px 16px;
-      font-size: 12px; cursor: pointer; font-family: inherit;
-    }
-
-    .agree-wrap {
-      display: flex; align-items: flex-start; gap: 12px;
-      background: rgba(255,255,255,.05); border-radius: 12px;
-      padding: 14px; cursor: pointer;
-    }
+    .preview-wrap img { width: 100%; max-height: 260px; object-fit: contain; border-radius: 12px; border: 1px solid rgba(255,255,255,.15); }
+    .preview-name { font-size: 11px; color: rgba(255,255,255,.45); margin-top: 6px; text-align: center; word-break: break-all; }
+    .remove-btn { display: block; margin: 8px auto 0; background: rgba(255,80,80,.15); border: 1px solid rgba(255,80,80,.3); color: #ff8080; border-radius: 20px; padding: 5px 16px; font-size: 12px; cursor: pointer; font-family: inherit; }
+    .agree-wrap { display: flex; align-items: flex-start; gap: 12px; background: rgba(255,255,255,.05); border-radius: 12px; padding: 14px; cursor: pointer; }
     .agree-wrap input[type=checkbox] { display: none; }
-    .custom-cb {
-      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
-      border: 2px solid rgba(255,255,255,.3);
-      display: flex; align-items: center; justify-content: center;
-      transition: all .2s; margin-top: 1px;
-    }
-    .agree-wrap:has(input:checked) .custom-cb {
-      background: var(--gold); border-color: var(--gold);
-    }
-    .custom-cb::after {
-      content: ''; width: 5px; height: 9px;
-      border: 2px solid transparent;
-      border-right: none; border-top: none;
-      transform: rotate(45deg) translate(-1px,-1px);
-      transition: border-color .2s;
-    }
+    .custom-cb { width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0; border: 2px solid rgba(255,255,255,.3); display: flex; align-items: center; justify-content: center; transition: all .2s; margin-top: 1px; }
+    .agree-wrap:has(input:checked) .custom-cb { background: var(--gold); border-color: var(--gold); }
+    .custom-cb::after { content: ''; width: 5px; height: 9px; border: 2px solid transparent; border-right: none; border-top: none; transform: rotate(45deg) translate(-1px,-1px); transition: border-color .2s; }
     .agree-wrap:has(input:checked) .custom-cb::after { border-color: #0d1b3e; }
     .agree-text { font-size: 12px; color: rgba(255,255,255,.65); line-height: 1.7; }
     .agree-text a { color: var(--teal); text-decoration: none; }
-
     .err { font-size: 11px; color: #ff7b7b; margin-top: 5px; display: none; }
     .err.show { display: block; }
     input.error, textarea.error { border-color: #ff7b7b; }
     .upload-area.error { border-color: #ff7b7b; }
-
-    .submit-btn {
-      width: 100%; padding: 17px; border: none; border-radius: 50px;
-      background: linear-gradient(135deg, #f5c842, #fde97a, #ffaa3b);
-      color: #0d1b3e; font-family: inherit; font-size: 16px; font-weight: 700;
-      letter-spacing: 2px; cursor: pointer;
-      box-shadow: 0 6px 20px rgba(245,200,66,.4);
-      transition: transform .2s, opacity .2s;
-    }
+    .submit-btn { width: 100%; padding: 17px; border: none; border-radius: 50px; background: linear-gradient(135deg, #f5c842, #fde97a, #ffaa3b); color: #0d1b3e; font-family: inherit; font-size: 16px; font-weight: 700; letter-spacing: 2px; cursor: pointer; box-shadow: 0 6px 20px rgba(245,200,66,.4); transition: transform .2s, opacity .2s; }
     .submit-btn:active { transform: scale(.97); }
     .submit-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
-
-    .loading-overlay {
-      display: none; position: fixed; inset: 0; z-index: 100;
-      background: rgba(13,27,62,.85); backdrop-filter: blur(6px);
-      align-items: center; justify-content: center; flex-direction: column; gap: 16px;
-    }
+    .loading-overlay { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(13,27,62,.85); backdrop-filter: blur(6px); align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
     .loading-overlay.show { display: flex; }
-    .spinner {
-      width: 44px; height: 44px; border-radius: 50%;
-      border: 3px solid rgba(255,255,255,.15);
-      border-top-color: var(--gold);
-      animation: spin 0.9s linear infinite;
-    }
+    .spinner { width: 44px; height: 44px; border-radius: 50%; border: 3px solid rgba(255,255,255,.15); border-top-color: var(--gold); animation: spin 0.9s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .loading-text { font-size: 14px; color: rgba(255,255,255,.7); letter-spacing: 1px; }
-
-    .success-screen {
-      display: none; text-align: center; padding: 60px 20px;
-    }
+    .success-screen { display: none; text-align: center; padding: 60px 20px; }
     .success-screen.show { display: block; }
     .success-icon { font-size: 64px; margin-bottom: 16px; animation: pop .5s ease; }
     @keyframes pop { 0%{transform:scale(0)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
-    .success-title {
-      font-size: 22px; font-weight: 700;
-      background: linear-gradient(135deg, var(--gold), var(--teal));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; margin-bottom: 12px;
-    }
+    .success-title { font-size: 22px; font-weight: 700; background: linear-gradient(135deg, var(--gold), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
     .success-msg { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.8; }
-
-    .duplicate-msg {
-      background: rgba(255,107,107,.1); border: 1px solid rgba(255,107,107,.3);
-      border-radius: 14px; padding: 20px; text-align: center;
-      margin-top: 16px; display: none;
-    }
+    .duplicate-msg { background: rgba(255,107,107,.1); border: 1px solid rgba(255,107,107,.3); border-radius: 14px; padding: 20px; text-align: center; margin-top: 16px; display: none; }
     .duplicate-msg.show { display: block; }
     .duplicate-msg p { font-size: 14px; color: #ff9999; line-height: 1.7; }
-
     .footer { text-align: center; margin-top: 32px; font-size: 11px; color: rgba(255,255,255,.2); }
-
-    .closed-screen {
-      display: none; text-align: center; padding: 80px 20px;
-    }
+    .closed-screen { display: none; text-align: center; padding: 80px 20px; }
     .closed-screen.show { display: block; }
     .closed-icon { font-size: 60px; margin-bottom: 20px; }
-    .closed-title {
-      font-size: 18px; font-weight: 700; color: rgba(255,255,255,.85);
-      line-height: 1.8; margin-bottom: 16px;
-    }
+    .closed-title { font-size: 18px; font-weight: 700; color: rgba(255,255,255,.85); line-height: 1.8; margin-bottom: 16px; }
     .closed-sub { font-size: 14px; color: rgba(255,255,255,.5); }
-
     .prize-list { display: flex; flex-direction: column; gap: 10px; }
-    .prize-option {
-      display: flex; align-items: center; gap: 12px;
-      background: rgba(255,255,255,.05); border-radius: 12px;
-      padding: 14px 16px; cursor: pointer;
-      border: 1.5px solid rgba(255,255,255,.1);
-      transition: border-color .2s, background .2s;
-    }
-    .prize-option:has(input:checked) {
-      border-color: var(--gold);
-      background: rgba(245,200,66,.08);
-    }
+    .prize-option { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,.05); border-radius: 12px; padding: 14px 16px; cursor: pointer; border: 1.5px solid rgba(255,255,255,.1); transition: border-color .2s, background .2s; }
+    .prize-option:has(input:checked) { border-color: var(--gold); background: rgba(245,200,66,.08); }
     .prize-option input[type=checkbox] { display: none; }
-    .prize-cb {
-      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
-      border: 2px solid rgba(255,255,255,.3);
-      display: flex; align-items: center; justify-content: center;
-      transition: all .2s;
-    }
-    .prize-option:has(input:checked) .prize-cb {
-      background: var(--gold); border-color: var(--gold);
-    }
-    .prize-cb::after {
-      content: ''; width: 5px; height: 9px;
-      border: 2px solid transparent;
-      border-right: none; border-top: none;
-      transform: rotate(45deg) translate(-1px,-1px);
-      transition: border-color .2s;
-    }
+    .prize-cb { width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0; border: 2px solid rgba(255,255,255,.3); display: flex; align-items: center; justify-content: center; transition: all .2s; }
+    .prize-option:has(input:checked) .prize-cb { background: var(--gold); border-color: var(--gold); }
+    .prize-cb::after { content: ''; width: 5px; height: 9px; border: 2px solid transparent; border-right: none; border-top: none; transform: rotate(45deg) translate(-1px,-1px); transition: border-color .2s; }
     .prize-option:has(input:checked) .prize-cb::after { border-color: #0d1b3e; }
     .prize-label { font-size: 15px; font-weight: 500; }
   </style>
 </head>
 <body>
-
 <div class="stars" id="stars"></div>
-
 <div class="container">
-
   <div class="header">
     <h1>七夕 抽選結果連絡フォーム</h1>
     <p class="sub">当選スクリーンショットを送ってください</p>
   </div>
 
   <div id="mainForm">
-
     <div class="card">
       <div class="section-label">✦ 応募者情報</div>
-
       <div class="form-group">
         <label class="field-label">お名前<span class="req">必須</span></label>
         <input type="text" id="name" placeholder="例：山田 花子" maxlength="50">
         <div class="err" id="nameErr">お名前を入力してください</div>
       </div>
-
       <div class="form-group">
         <label class="field-label">電話番号<span class="req">必須</span></label>
         <input type="tel" id="phone" placeholder="例：090-1234-5678" maxlength="20">
         <div class="err" id="phoneErr">電話番号を入力してください</div>
       </div>
-
       <div class="form-group">
         <label class="field-label">メールアドレス<span class="req">必須</span></label>
         <input type="email" id="email" placeholder="example@email.com">
@@ -299,7 +114,6 @@
     <div class="card">
       <div class="section-label">✦ 当選した内容をチェックしてください</div>
       <p style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:14px;">※スクリーンショット内容と一致するものを選んでください</p>
-
       <div class="prize-list">
         <label class="prize-option">
           <input type="radio" name="prize" value="1000円分クーポン">
@@ -322,7 +136,6 @@
 
     <div class="card">
       <div class="section-label">✦ 抽選結果スクリーンショット</div>
-
       <div class="upload-area" id="uploadArea">
         <input type="file" id="fileInput" accept="image/*"
                onchange="handleFile(this.files[0])"
@@ -334,7 +147,6 @@
         <div class="upload-hint">JPG / PNG / HEIC · 最大10MB</div>
       </div>
       <div class="err" id="fileErr">スクリーンショットを選択してください</div>
-
       <div class="preview-wrap" id="previewWrap">
         <img id="previewImg" src="" alt="プレビュー">
         <div class="preview-name" id="previewName"></div>
@@ -346,8 +158,7 @@
       <div class="section-label">✦ コメント</div>
       <div class="form-group" style="margin-bottom:0">
         <label class="field-label">メッセージ<span class="opt">任意</span></label>
-        <textarea id="comment" rows="3" maxlength="300"
-          placeholder="一言メッセージをどうぞ"></textarea>
+        <textarea id="comment" rows="3" maxlength="300" placeholder="一言メッセージをどうぞ"></textarea>
       </div>
     </div>
 
@@ -388,9 +199,7 @@
 
   <div class="closed-screen" id="closedScreen">
     <div class="closed-icon">🎋</div>
-    <div class="closed-title">
-      当選結果の受付は<br>7月20日で終了しました。
-    </div>
+    <div class="closed-title">当選結果の受付は<br>7月20日で終了しました。</div>
     <div class="closed-sub">来年2027の七夕をお楽しみに。</div>
   </div>
 
@@ -417,10 +226,7 @@
 
   function handleFile(file) {
     if (!file) return;
-    if (file.size > 10 * 1024 * 1024) {
-      alert('ファイルサイズが10MBを超えています');
-      return;
-    }
+    if (file.size > 10 * 1024 * 1024) { alert('ファイルサイズが10MBを超えています'); return; }
     selectedFile = file;
     const reader = new FileReader();
     reader.onload = e => {
@@ -442,16 +248,10 @@
     document.getElementById('uploadArea').style.display = 'block';
   }
 
-  function dragOver(e) {
-    e.preventDefault();
-    document.getElementById('uploadArea').classList.add('drag');
-  }
-  function dragLeave() {
-    document.getElementById('uploadArea').classList.remove('drag');
-  }
+  function dragOver(e) { e.preventDefault(); document.getElementById('uploadArea').classList.add('drag'); }
+  function dragLeave() { document.getElementById('uploadArea').classList.remove('drag'); }
   function handleDrop(e) {
-    e.preventDefault();
-    dragLeave();
+    e.preventDefault(); dragLeave();
     const file = e.dataTransfer?.files?.[0];
     if (file) handleFile(file);
   }
@@ -466,35 +266,19 @@
     checks.forEach(c => {
       const el = document.getElementById(c.id);
       const er = document.getElementById(c.errId);
-      if (!c.test(el.value)) {
-        el.classList.add('error'); er.classList.add('show'); ok = false;
-      } else {
-        el.classList.remove('error'); er.classList.remove('show');
-      }
+      if (!c.test(el.value)) { el.classList.add('error'); er.classList.add('show'); ok = false; }
+      else { el.classList.remove('error'); er.classList.remove('show'); }
     });
-
     const prize = document.querySelector('input[name="prize"]:checked');
-    const prizeErr = document.getElementById('prizeErr');
-    if (!prize) {
-      prizeErr.classList.add('show'); ok = false;
-    } else {
-      prizeErr.classList.remove('show');
-    }
-
+    if (!prize) { document.getElementById('prizeErr').classList.add('show'); ok = false; }
+    else { document.getElementById('prizeErr').classList.remove('show'); }
     if (!selectedFile) {
       document.getElementById('uploadArea').classList.add('error');
-      document.getElementById('fileErr').classList.add('show');
-      ok = false;
+      document.getElementById('fileErr').classList.add('show'); ok = false;
     }
-
     const agree = document.getElementById('agree');
-    const agreeErr = document.getElementById('agreeErr');
-    if (!agree.checked) {
-      agreeErr.classList.add('show'); ok = false;
-    } else {
-      agreeErr.classList.remove('show');
-    }
-
+    if (!agree.checked) { document.getElementById('agreeErr').classList.add('show'); ok = false; }
+    else { document.getElementById('agreeErr').classList.remove('show'); }
     return ok;
   }
 
@@ -507,17 +291,14 @@
   async function submitForm() {
     document.getElementById('dupMsg').classList.remove('show');
     if (!validate()) {
-      document.querySelector('.error, .err.show')
-        ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.querySelector('.error, .err.show')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
-
     document.getElementById('loading').classList.add('show');
     document.getElementById('submitBtn').disabled = true;
 
     try {
       const { base64, mimeType } = await toBase64(selectedFile);
-
       const payload = {
         name:        document.getElementById('name').value.trim(),
         phone:       document.getElementById('phone').value.trim(),
@@ -530,20 +311,9 @@
         imageType:   mimeType,
       };
 
-      const GAS_URL = 'https://script.google.com/macros/s/AKfycbx54LOfe9RTRvRYESleM3kBZUKpBU2z9juhQNAMnoqROtNT6H41EVxFM5nYw6IqMXDoUw/exec';  // ← ここをGASのURLに置き換え
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbz9beClbuzbeQ_x1uZOoFftUYaB02HbvZV2b8dBs7MFp7CoTq5c4yheWPMkpnP2RLVhFQ/exec';  // ← ここをGASのURLに置き換え
 
-      await fetch(GAS_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(payload),
-      });
-
-      document.getElementById('loading').classList.remove('show');
-      document.getElementById('mainForm').style.display = 'none';
-      document.querySelector('.header').style.display = 'none';
-      document.getElementById('successScreen').classList.add('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      await sendViaForm(GAS_URL, payload);
 
     } catch (err) {
       document.getElementById('loading').classList.remove('show');
@@ -551,6 +321,47 @@
       alert('送信に失敗しました。時間をおいて再度お試しください。');
       console.error(err);
     }
+  }
+
+  function sendViaForm(url, payload) {
+    return new Promise((resolve) => {
+      const iframe = document.createElement('iframe');
+      iframe.name = 'gasTarget';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = url;
+      form.target = 'gasTarget';
+      form.style.display = 'none';
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'data';
+      input.value = JSON.stringify(payload);
+      form.appendChild(input);
+      document.body.appendChild(form);
+
+      function finish() {
+        document.getElementById('loading').classList.remove('show');
+        document.getElementById('mainForm').style.display = 'none';
+        document.querySelector('.header').style.display = 'none';
+        document.getElementById('successScreen').classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        resolve();
+      }
+
+      window.addEventListener('message', function handler(e) {
+        if (e.data && e.data.startsWith('gas:')) {
+          window.removeEventListener('message', handler);
+          clearTimeout(timer);
+          finish();
+        }
+      });
+
+      const timer = setTimeout(finish, 6000);
+      form.submit();
+    });
   }
 
   function toBase64(file) {
