@@ -229,6 +229,39 @@
     .duplicate-msg p { font-size: 14px; color: #ff9999; line-height: 1.7; }
 
     .footer { text-align: center; margin-top: 32px; font-size: 11px; color: rgba(255,255,255,.2); }
+
+    /* 当選チェックボックス */
+    .prize-list { display: flex; flex-direction: column; gap: 10px; }
+    .prize-option {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,.05); border-radius: 12px;
+      padding: 14px 16px; cursor: pointer;
+      border: 1.5px solid rgba(255,255,255,.1);
+      transition: border-color .2s, background .2s;
+    }
+    .prize-option:has(input:checked) {
+      border-color: var(--gold);
+      background: rgba(245,200,66,.08);
+    }
+    .prize-option input[type=checkbox] { display: none; }
+    .prize-cb {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .prize-option:has(input:checked) .prize-cb {
+      background: var(--gold); border-color: var(--gold);
+    }
+    .prize-cb::after {
+      content: ''; width: 5px; height: 9px;
+      border: 2px solid transparent;
+      border-right: none; border-top: none;
+      transform: rotate(45deg) translate(-1px,-1px);
+      transition: border-color .2s;
+    }
+    .prize-option:has(input:checked) .prize-cb::after { border-color: #0d1b3e; }
+    .prize-label { font-size: 15px; font-weight: 500; }
   </style>
 </head>
 <body>
@@ -268,10 +301,31 @@
         <div class="err" id="emailErr">正しいメールアドレスを入力してください</div>
       </div>
 
-      <div class="form-group" style="margin-bottom:0">
-        <label class="field-label">LINE名<span class="opt">任意</span></label>
-        <input type="text" id="lineId" placeholder="例：@hanakotan" maxlength="50">
+    </div>
+
+    <!-- 当選内容 -->
+    <div class="card">
+      <div class="section-label">✦ 当選した内容をチェックしてください</div>
+      <p style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:14px;">※スクリーンショット内容と一致するものを選んでください</p>
+
+      <div class="prize-list">
+        <label class="prize-option">
+          <input type="radio" name="prize" value="1000円分クーポン">
+          <span class="prize-cb"></span>
+          <span class="prize-label">1,000円分クーポン</span>
+        </label>
+        <label class="prize-option">
+          <input type="radio" name="prize" value="500円分クーポン">
+          <span class="prize-cb"></span>
+          <span class="prize-label">500円分クーポン</span>
+        </label>
+        <label class="prize-option">
+          <input type="radio" name="prize" value="100円分クーポン">
+          <span class="prize-cb"></span>
+          <span class="prize-label">100円分クーポン</span>
+        </label>
       </div>
+      <div class="err" id="prizeErr">当選内容を選択してください</div>
     </div>
 
     <!-- スクショアップロード -->
@@ -421,6 +475,14 @@
       }
     });
 
+    const prize = document.querySelector('input[name="prize"]:checked');
+    const prizeErr = document.getElementById('prizeErr');
+    if (!prize) {
+      prizeErr.classList.add('show'); ok = false;
+    } else {
+      prizeErr.classList.remove('show');
+    }
+
     if (!selectedFile) {
       document.getElementById('uploadArea').classList.add('error');
       document.getElementById('fileErr').classList.add('show');
@@ -465,7 +527,8 @@
         name:        document.getElementById('name').value.trim(),
         phone:       document.getElementById('phone').value.trim(),
         email:       document.getElementById('email').value.trim(),
-        lineId:      document.getElementById('lineId').value.trim(),
+        lineId:      '',
+        prize:       document.querySelector('input[name="prize"]:checked')?.value || '',
         comment:     document.getElementById('comment').value.trim(),
         imageBase64: base64,
         imageName:   selectedFile.name,
