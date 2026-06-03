@@ -47,7 +47,6 @@
       background-clip: text;
     }
     .header .sub { font-size: 12px; color: rgba(255,255,255,.55); margin-top: 6px; letter-spacing: 1px; }
-    .emoji-row { font-size: 36px; margin-bottom: 10px; }
 
     .card {
       background: rgba(255,255,255,.06);
@@ -273,7 +272,6 @@
     <p class="sub">当選スクリーンショットを送ってください</p>
   </div>
 
-  <!-- メインフォーム -->
   <div id="mainForm">
 
     <div class="card">
@@ -296,7 +294,6 @@
         <input type="email" id="email" placeholder="example@email.com">
         <div class="err" id="emailErr">正しいメールアドレスを入力してください</div>
       </div>
-
     </div>
 
     <div class="card">
@@ -380,7 +377,6 @@
     <div class="loading-text">送信中…しばらくお待ちください</div>
   </div>
 
-  <!-- 完了画面 -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon">🌟</div>
     <div class="success-title">応募完了！</div>
@@ -390,7 +386,6 @@
     </div>
   </div>
 
-  <!-- 受付終了画面 -->
   <div class="closed-screen" id="closedScreen">
     <div class="closed-icon">🎋</div>
     <div class="closed-title">
@@ -535,34 +530,16 @@
         imageType:   mimeType,
       };
 
-      // GASのWeb App URL（デプロイ後に置き換え）
-      const GAS_URL = 'https://script.google.com/macros/s/AKfycbx54LOfe9RTRvRYESleM3kBZUKpBU2z9juhQNAMnoqROtNT6H41EVxFM5nYw6IqMXDoUw/exec';
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbx54LOfe9RTRvRYESleM3kBZUKpBU2z9juhQNAMnoqROtNT6H41EVxFM5nYw6IqMXDoUw/exec';  // ← ここをGASのURLに置き換え
 
-      // text/plain = simple request → preflightなし → GAS CORSが通る
-      const res = await fetch(GAS_URL, {
+      await fetch(GAS_URL, {
         method: 'POST',
-        mode: 'cors',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(payload),
-        redirect: 'follow',
       });
 
-      const result = await res.json();
-
       document.getElementById('loading').classList.remove('show');
-
-      if (result.error === 'already_submitted') {
-        document.getElementById('dupMsg').classList.add('show');
-        document.getElementById('submitBtn').disabled = false;
-        document.getElementById('dupMsg')
-          .scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
-      }
-
-      if (!result.success) {
-        throw new Error(result.error || '送信エラー');
-      }
-
       document.getElementById('mainForm').style.display = 'none';
       document.querySelector('.header').style.display = 'none';
       document.getElementById('successScreen').classList.add('show');
