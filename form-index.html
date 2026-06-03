@@ -457,6 +457,7 @@
       document.getElementById('previewImg').src = e.target.result;
       document.getElementById('previewName').textContent = file.name;
       document.getElementById('previewWrap').style.display = 'block';
+      document.getElementById('uploadArea').style.display = 'none';
       document.getElementById('uploadArea').classList.remove('error');
       document.getElementById('fileErr').classList.remove('show');
     };
@@ -468,6 +469,7 @@
     document.getElementById('fileInput').value = '';
     document.getElementById('previewWrap').style.display = 'none';
     document.getElementById('previewImg').src = '';
+    document.getElementById('uploadArea').style.display = 'block';
   }
 
   function dragOver(e) {
