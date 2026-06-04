@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -25,7 +26,6 @@
       overflow-x: hidden;
     }
 
-    /* 星 */
     .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
     .star {
       position: absolute; border-radius: 50%; background: #fff;
@@ -40,7 +40,6 @@
       padding: 0 16px 60px;
     }
 
-    /* ヘッダー */
     .header { text-align: center; padding: 36px 0 24px; }
     .header h1 {
       font-size: 22px; font-weight: 700; letter-spacing: 2px;
@@ -49,9 +48,7 @@
       background-clip: text;
     }
     .header .sub { font-size: 12px; color: rgba(255,255,255,.55); margin-top: 6px; letter-spacing: 1px; }
-    .emoji-row { font-size: 36px; margin-bottom: 10px; }
 
-    /* カード */
     .card {
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.12);
@@ -70,7 +67,6 @@
       background: linear-gradient(to right, rgba(245,200,66,.4), transparent);
     }
 
-    /* フォーム要素 */
     .form-group { margin-bottom: 20px; }
     label.field-label {
       display: block; font-size: 13px; font-weight: 500;
@@ -106,7 +102,6 @@
     }
     textarea { resize: none; line-height: 1.6; }
 
-    /* 画像アップロード */
     .upload-area {
       border: 2px dashed rgba(255,255,255,.25);
       border-radius: 16px; padding: 28px 16px;
@@ -126,7 +121,6 @@
     .upload-text { font-size: 14px; color: rgba(255,255,255,.7); }
     .upload-hint { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 4px; }
 
-    /* プレビュー */
     .preview-wrap { margin-top: 14px; display: none; }
     .preview-wrap img {
       width: 100%; max-height: 260px; object-fit: contain;
@@ -143,7 +137,6 @@
       font-size: 12px; cursor: pointer; font-family: inherit;
     }
 
-    /* 同意 */
     .agree-wrap {
       display: flex; align-items: flex-start; gap: 12px;
       background: rgba(255,255,255,.05); border-radius: 12px;
@@ -170,13 +163,11 @@
     .agree-text { font-size: 12px; color: rgba(255,255,255,.65); line-height: 1.7; }
     .agree-text a { color: var(--teal); text-decoration: none; }
 
-    /* エラー */
     .err { font-size: 11px; color: #ff7b7b; margin-top: 5px; display: none; }
     .err.show { display: block; }
     input.error, textarea.error { border-color: #ff7b7b; }
     .upload-area.error { border-color: #ff7b7b; }
 
-    /* 送信ボタン */
     .submit-btn {
       width: 100%; padding: 17px; border: none; border-radius: 50px;
       background: linear-gradient(135deg, #f5c842, #fde97a, #ffaa3b);
@@ -188,7 +179,6 @@
     .submit-btn:active { transform: scale(.97); }
     .submit-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
 
-    /* ローディング */
     .loading-overlay {
       display: none; position: fixed; inset: 0; z-index: 100;
       background: rgba(13,27,62,.85); backdrop-filter: blur(6px);
@@ -204,7 +194,6 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .loading-text { font-size: 14px; color: rgba(255,255,255,.7); letter-spacing: 1px; }
 
-    /* 完了画面 */
     .success-screen {
       display: none; text-align: center; padding: 60px 20px;
     }
@@ -219,7 +208,6 @@
     }
     .success-msg { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.8; }
 
-    /* エラー画面（already submitted） */
     .duplicate-msg {
       background: rgba(255,107,107,.1); border: 1px solid rgba(255,107,107,.3);
       border-radius: 14px; padding: 20px; text-align: center;
@@ -230,7 +218,6 @@
 
     .footer { text-align: center; margin-top: 32px; font-size: 11px; color: rgba(255,255,255,.2); }
 
-    /* 受付終了画面 */
     .closed-screen {
       display: none; text-align: center; padding: 80px 20px;
     }
@@ -242,7 +229,6 @@
     }
     .closed-sub { font-size: 14px; color: rgba(255,255,255,.5); }
 
-    /* 当選チェックボックス */
     .prize-list { display: flex; flex-direction: column; gap: 10px; }
     .prize-option {
       display: flex; align-items: center; gap: 12px;
@@ -287,38 +273,30 @@
     <p class="sub">当選スクリーンショットを送ってください</p>
   </div>
 
-  <!-- メインフォーム -->
   <div id="mainForm">
 
-    <!-- 応募者情報 -->
     <div class="card">
       <div class="section-label">✦ 応募者情報</div>
-
       <div class="form-group">
         <label class="field-label">お名前<span class="req">必須</span></label>
         <input type="text" id="name" placeholder="例：山田 花子" maxlength="50">
         <div class="err" id="nameErr">お名前を入力してください</div>
       </div>
-
       <div class="form-group">
         <label class="field-label">電話番号<span class="req">必須</span></label>
         <input type="tel" id="phone" placeholder="例：090-1234-5678" maxlength="20">
         <div class="err" id="phoneErr">電話番号を入力してください</div>
       </div>
-
       <div class="form-group">
         <label class="field-label">メールアドレス<span class="req">必須</span></label>
         <input type="email" id="email" placeholder="example@email.com">
         <div class="err" id="emailErr">正しいメールアドレスを入力してください</div>
       </div>
-
     </div>
 
-    <!-- 当選内容 -->
     <div class="card">
       <div class="section-label">✦ 当選した内容をチェックしてください</div>
       <p style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:14px;">※スクリーンショット内容と一致するものを選んでください</p>
-
       <div class="prize-list">
         <label class="prize-option">
           <input type="radio" name="prize" value="1000円分クーポン">
@@ -339,10 +317,8 @@
       <div class="err" id="prizeErr">当選内容を選択してください</div>
     </div>
 
-    <!-- スクショアップロード -->
     <div class="card">
       <div class="section-label">✦ 抽選結果スクリーンショット</div>
-
       <div class="upload-area" id="uploadArea">
         <input type="file" id="fileInput" accept="image/*"
                onchange="handleFile(this.files[0])"
@@ -354,7 +330,6 @@
         <div class="upload-hint">JPG / PNG / HEIC · 最大10MB</div>
       </div>
       <div class="err" id="fileErr">スクリーンショットを選択してください</div>
-
       <div class="preview-wrap" id="previewWrap">
         <img id="previewImg" src="" alt="プレビュー">
         <div class="preview-name" id="previewName"></div>
@@ -362,7 +337,6 @@
       </div>
     </div>
 
-    <!-- コメント -->
     <div class="card">
       <div class="section-label">✦ コメント</div>
       <div class="form-group" style="margin-bottom:0">
@@ -372,7 +346,6 @@
       </div>
     </div>
 
-    <!-- 同意 -->
     <div class="card">
       <label class="agree-wrap" for="agree">
         <input type="checkbox" id="agree">
@@ -385,7 +358,6 @@
       <div class="err" id="agreeErr">同意にチェックを入れてください</div>
     </div>
 
-    <!-- 重複エラー -->
     <div class="duplicate-msg" id="dupMsg">
       <p>⚠️ すでにこのメールアドレスまたは電話番号で応募済みです。<br>1人1回のみ応募できます。</p>
     </div>
@@ -395,13 +367,11 @@
     </button>
   </div>
 
-  <!-- ローディング -->
   <div class="loading-overlay" id="loading">
     <div class="spinner"></div>
     <div class="loading-text">送信中…しばらくお待ちください</div>
   </div>
 
-  <!-- 完了画面 -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon">🌟</div>
     <div class="success-title">応募完了！</div>
@@ -411,7 +381,6 @@
     </div>
   </div>
 
-  <!-- 受付終了画面 -->
   <div class="closed-screen" id="closedScreen">
     <div class="closed-icon">🎋</div>
     <div class="closed-title">
@@ -424,14 +393,12 @@
 </div>
 
 <script>
-  // 受付終了チェック（2026年7月21日 0:00 JST以降）
   const deadline = new Date('2026-07-21T00:00:00+09:00');
   if (new Date() >= deadline) {
     document.getElementById('mainForm').style.display = 'none';
     document.getElementById('closedScreen').classList.add('show');
   }
 
-  // 星生成
   const sc = document.getElementById('stars');
   for (let i = 0; i < 100; i++) {
     const s = document.createElement('div');
@@ -441,7 +408,6 @@
     sc.appendChild(s);
   }
 
-  // ========== ファイル処理 ==========
   let selectedFile = null;
 
   function handleFile(file) {
@@ -485,7 +451,6 @@
     if (file) handleFile(file);
   }
 
-  // ========== バリデーション ==========
   function validate() {
     let ok = true;
     const checks = [
@@ -502,40 +467,25 @@
         el.classList.remove('error'); er.classList.remove('show');
       }
     });
-
     const prize = document.querySelector('input[name="prize"]:checked');
-    const prizeErr = document.getElementById('prizeErr');
-    if (!prize) {
-      prizeErr.classList.add('show'); ok = false;
-    } else {
-      prizeErr.classList.remove('show');
-    }
-
+    if (!prize) { document.getElementById('prizeErr').classList.add('show'); ok = false; }
+    else { document.getElementById('prizeErr').classList.remove('show'); }
     if (!selectedFile) {
       document.getElementById('uploadArea').classList.add('error');
-      document.getElementById('fileErr').classList.add('show');
-      ok = false;
+      document.getElementById('fileErr').classList.add('show'); ok = false;
     }
-
     const agree = document.getElementById('agree');
-    const agreeErr = document.getElementById('agreeErr');
-    if (!agree.checked) {
-      agreeErr.classList.add('show'); ok = false;
-    } else {
-      agreeErr.classList.remove('show');
-    }
-
+    if (!agree.checked) { document.getElementById('agreeErr').classList.add('show'); ok = false; }
+    else { document.getElementById('agreeErr').classList.remove('show'); }
     return ok;
   }
 
-  // リアルタイムエラー解除
   ['name','phone','email'].forEach(id => {
     document.getElementById(id).addEventListener('input', () => {
       document.getElementById(id).classList.remove('error');
     });
   });
 
-  // ========== 送信 ==========
   async function submitForm() {
     document.getElementById('dupMsg').classList.remove('show');
     if (!validate()) {
@@ -543,14 +493,11 @@
         ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
-
     document.getElementById('loading').classList.add('show');
     document.getElementById('submitBtn').disabled = true;
 
     try {
-      // 画像をBase64に変換
       const { base64, mimeType } = await toBase64(selectedFile);
-
       const payload = {
         name:        document.getElementById('name').value.trim(),
         phone:       document.getElementById('phone').value.trim(),
@@ -563,10 +510,8 @@
         imageType:   mimeType,
       };
 
-      // GASのWeb App URL（デプロイ後に置き換え）
-      const GAS_URL = 'https://script.google.com/macros/s/AKfycbz9beClbuzbeQ_x1uZOoFftUYaB02HbvZV2b8dBs7MFp7CoTq5c4yheWPMkpnP2RLVhFQ/exec';
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbz9beClbuzbeQ_x1uZOoFftUYaB02HbvZV2b8dBs7MFp7CoTq5c4yheWPMkpnP2RLVhFQ/exec';  // ← ここをGASのURLに置き換え
 
-      // フォーム+iframe送信（CORSとリダイレクトのボディ消失を回避）
       await sendViaForm(GAS_URL, payload);
 
     } catch (err) {
@@ -579,13 +524,11 @@
 
   function sendViaForm(url, payload) {
     return new Promise((resolve) => {
-      // iframe作成
       const iframe = document.createElement('iframe');
       iframe.name = 'gasTarget';
       iframe.style.display = 'none';
       document.body.appendChild(iframe);
 
-      // 隠しフォーム作成
       const form = document.createElement('form');
       form.method = 'POST';
       form.action = url;
@@ -607,7 +550,6 @@
         resolve();
       }
 
-      // GASからpostMessageが来たら完了
       window.addEventListener('message', function handler(e) {
         if (e.data && e.data.startsWith('gas:')) {
           window.removeEventListener('message', handler);
@@ -616,14 +558,12 @@
         }
       });
 
-      // 6秒タイムアウト（postMessageが届かない場合の保険）
       const timer = setTimeout(finish, 6000);
-
       form.submit();
     });
   }
 
-  // 画像を最大1200px・JPEG70%に圧縮してbase64化（GAS受信サイズ制限対策）
+  // 画像を最大1200px・JPEG70%に圧縮してbase64化
   function toBase64(file) {
     return new Promise((resolve, reject) => {
       const url = URL.createObjectURL(file);
